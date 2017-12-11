@@ -1,0 +1,2 @@
+p01~p06: code to run the proteogenomics pipeline.
+m01_parse_event.py: code to process the event results of the pipeline. Here each event represents a call (eg:new splice, new gene) based on the identified peptides.
