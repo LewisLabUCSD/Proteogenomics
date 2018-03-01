@@ -17,13 +17,19 @@ if case == 0:
     fasta_database_name = sys.argv[1]
     output_file_name = sys.argv[2]
     pickle_file_name = sys.argv[3]
+    ntt = sys.argv[4]
 #if len(sys.argv) > 3:
 #        tmp_file_name = sys.argv[3]
 else:
     #spectrum_file_name = 'CPTAC_BRCA_VGraph_TCGA_VCF_750_A0201_WashU-Pool1_Aliquot7_Process1_20120203_r_klc_x_A1_t1_fr01_VCF_chr1_30_2.tsv'
-    fasta_database_name = 'RNAseqMatch/v1-23_chr1.fa'
-    output_file_name = 'RNAseqMatch/output_v1-23_chr1.txt'
-    tmp_file_name = 'RNAseqMatch/v1-23_chr1.tmp'
+#     fasta_database_name = 'RNAseqMatch/v1-23_chr1.fa'
+#     output_file_name = 'RNAseqMatch/output_v1-23_chr1.txt'
+#     tmp_file_name = 'RNAseqMatch/v1-23_chr1.tmp'
+
+    fasta_database_name = '/data/s3cha/CHO_ENOSI_JOB/e22076b9e7ab40ef8fc2c63eddf67eba/sequence3/splice.fa'
+    output_file_name = '/data/s3cha/CHO_ENOSI_JOB/e22076b9e7ab40ef8fc2c63eddf67eba/group1/event_out/event_location.txt'
+    pickle_file_name = '/data/s3cha/CHO_ENOSI_JOB/e22076b9e7ab40ef8fc2c63eddf67eba/group1/event_out/event_pepdic.p'
+    ntt = '2'
 
 
 #spectrum_file = open(spectrum_file_name,'r')
@@ -50,8 +56,8 @@ def binary_search(array,key,imin,imax):
         
 
 def    CleanPeptideString(pep_str):
-    if pep_str[1] == '.':
-        pep_str = pep_str[2:-2]
+#     if pep_str[1] == '.':
+#         pep_str = pep_str[2:-2]
     pep_str = pep_str.replace("0","")
     pep_str = pep_str.replace("1","")
     pep_str = pep_str.replace("2","")
@@ -149,6 +155,25 @@ def get_location(start_seq,end_seq,start,end,length,strand,chrNum):
     location.append(chrNum)
     return location
 
+# replace dictioanry key
+pep_list = pepdic.keys()
+for pep in pep_list:
+    key = pep
+    pep = pepdic[pep][0][0].split('\t')[8]
+    pep = CleanPeptideString(pep)
+    if ntt == '2':
+        if pep[0] == '-':
+            pep = pep[1:-1]
+        else:
+            pep = pep[:-1]
+    elif ntt == '1':
+        if pep[-2] in ['R','K']:
+            pep = pep[1:-1]
+        elif pep[0] in ['R','K']:
+            pep = pep[:-1]
+        else:
+            raise ValueError('protein is not tryptic peptides')
+    pepdic[pep] = pepdic.pop(key)
 ##data base read######################################################
 for db in db_list:
     print 'Reading database: ',db
@@ -202,7 +227,11 @@ for db in db_list:
     
     pep_list = pepdic.keys()
     for pep in pep_list:
-        pep = CleanPeptideString(pep)
+        try:
+            pep = CleanPeptideString(pep)
+        except:
+            print pep
+            assert False,'is wrong'
         location_index = [m.start() for m in re.finditer(pep,fasta_seq)]
         pep_location = []
         for location in location_index:

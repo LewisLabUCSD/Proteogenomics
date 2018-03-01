@@ -20,30 +20,26 @@ if len(sys.argv) > 1:
         DNA_folder = sys.argv[5]
 else:
     #VU run
-    unknown_location_filename = '/home/s3cha/data/VU/Cosmic/Location_VU_SPECFDR01_Cosmicoverlap2.txt'#'/home/s3cha/data/VU/Cosmic/Location_VU_SPECFDR01_Cosmicoverlap2.txt'#'/home/s3cha/data/VU/Somatic/Location_VU_RefSeq_PEPFDR01_rna.txt'#'/home/s3cha/data/PNNL/ov_somatic_mutations/Locations_PNNL_20140202_removed_dbSNP_somatic.txt'#'/home/s3cha/data/VU/Somatic/Location_VU_SPECFDR01_splice_vcf_dbSNP_somatic.txt'#'/home/s3cha/data/JHU/Location_JHU_SV_Result_SVrna_dbSNP_somatic.txt'#'/home/s3cha/data/PNNL/Location_PNNL_Single_recalculated.txt'#'C:/Users/Akard3/Dropbox/Workspace/SpliceGraph/src/Enosi/Locations_PNNL_20140202_removed_dbSNP.txt'#Location_PNNL_Single_recalculated.txt'#sample.txt'#
-    known_location_filename = 'Location_Combine123_RefSeq_recalculated_Correction.txt'#'/home/s3cha/data/VU/Location_VU_RefSeq_PEPFDR01.txt'#
-    ref_seq_filename = 'Homo_sapiens.GRCh37.70_formatted.gff'
-    output_filename = '/home/s3cha/data/VU/Cosmic/Event3_VU_somatic_cosmic.txt'#'/home/s3cha/data/PNNL/ov_somatic_mutations/EventLocations_PNNL_20140202_removed_dbSNP_somatic.txt'#'/home/s3cha/data/VU/Somatic/Event_VU_SPECFDR01_splice_vcf_dbSNP_somatic.txt'#'/home/s3cha/data/PNNL/Event_PNNL_Single_recalculated.txt'#'/home/s3cha/Dropbox/Workspace/SpliceGraph/src/Enosi/sample_event2.txt'#Event_PNNL_20140202_Concat.txt'
-    unknown_location_filename = '/home/s3cha/data/VU/Normal/Location_Normal_colon_SV_merged_somatic.txt'#'/home/s3cha/data/VU/Cosmic/Location_VU_SPECFDR01_Cosmicoverlap2.txt'#'/home/s3cha/data/VU/Somatic/Location_VU_RefSeq_PEPFDR01_rna.txt'#'/home/s3cha/data/PNNL/ov_somatic_mutations/Locations_PNNL_20140202_removed_dbSNP_somatic.txt'#'/home/s3cha/data/VU/Somatic/Location_VU_SPECFDR01_splice_vcf_dbSNP_somatic.txt'#'/home/s3cha/data/JHU/Location_JHU_SV_Result_SVrna_dbSNP_somatic.txt'#'/home/s3cha/data/PNNL/Location_PNNL_Single_recalculated.txt'#'C:/Users/Akard3/Dropbox/Workspace/SpliceGraph/src/Enosi/Locations_PNNL_20140202_removed_dbSNP.txt'#Location_PNNL_Single_recalculated.txt'#sample.txt'#
-    known_location_filename = 'Location_Combine123_RefSeq_recalculated_Correction.txt'#'/home/s3cha/data/VU/Location_VU_RefSeq_PEPFDR01.txt'#
-    ref_seq_filename = 'Homo_sapiens.GRCh37.70_formatted.gff'
-    output_filename = '/home/s3cha/data/VU/Normal/Event_Normal_colon_SV_merged_somatic.txt'#'/home/s3cha/data/PNNL/ov_somatic_mutations/EventLocations_PNNL_20140202_removed_dbSNP_somatic.txt'#'/home/s3cha/data/VU/Somatic/Event_VU_SPECFDR01_splice_vcf_dbSNP_somatic.txt'#'/home/s3cha/data/PNNL/Event_PNNL_Single_recalculated.txt'#'/home/s3cha/Dropbox/Workspace/SpliceGraph/src/Enosi/sample_event2.txt'#Event_PNNL_20140202_Concat.txt'
-    
-    DNA_folder = '/home/s3cha/s3cha/data/dna/70'
+#     unknown_location_filename = '/home/s3cha/data/VU/Cosmic/Location_VU_SPECFDR01_Cosmicoverlap2.txt'#'/home/s3cha/data/VU/Cosmic/Location_VU_SPECFDR01_Cosmicoverlap2.txt'#'/home/s3cha/data/VU/Somatic/Location_VU_RefSeq_PEPFDR01_rna.txt'#'/home/s3cha/data/PNNL/ov_somatic_mutations/Locations_PNNL_20140202_removed_dbSNP_somatic.txt'#'/home/s3cha/data/VU/Somatic/Location_VU_SPECFDR01_splice_vcf_dbSNP_somatic.txt'#'/home/s3cha/data/JHU/Location_JHU_SV_Result_SVrna_dbSNP_somatic.txt'#'/home/s3cha/data/PNNL/Location_PNNL_Single_recalculated.txt'#'C:/Users/Akard3/Dropbox/Workspace/SpliceGraph/src/Enosi/Locations_PNNL_20140202_removed_dbSNP.txt'#Location_PNNL_Single_recalculated.txt'#sample.txt'#
+#     known_location_filename = 'Location_Combine123_RefSeq_recalculated_Correction.txt'#'/home/s3cha/data/VU/Location_VU_RefSeq_PEPFDR01.txt'#
+#     ref_seq_filename = 'Homo_sapiens.GRCh37.70_formatted.gff'
+#     output_filename = '/home/s3cha/data/VU/Cosmic/Event3_VU_somatic_cosmic.txt'#'/home/s3cha/data/PNNL/ov_somatic_mutations/EventLocations_PNNL_20140202_removed_dbSNP_somatic.txt'#'/home/s3cha/data/VU/Somatic/Event_VU_SPECFDR01_splice_vcf_dbSNP_somatic.txt'#'/home/s3cha/data/PNNL/Event_PNNL_Single_recalculated.txt'#'/home/s3cha/Dropbox/Workspace/SpliceGraph/src/Enosi/sample_event2.txt'#Event_PNNL_20140202_Concat.txt'
+#     unknown_location_filename = '/home/s3cha/data/VU/Normal/Location_Normal_colon_SV_merged_somatic.txt'#'/home/s3cha/data/VU/Cosmic/Location_VU_SPECFDR01_Cosmicoverlap2.txt'#'/home/s3cha/data/VU/Somatic/Location_VU_RefSeq_PEPFDR01_rna.txt'#'/home/s3cha/data/PNNL/ov_somatic_mutations/Locations_PNNL_20140202_removed_dbSNP_somatic.txt'#'/home/s3cha/data/VU/Somatic/Location_VU_SPECFDR01_splice_vcf_dbSNP_somatic.txt'#'/home/s3cha/data/JHU/Location_JHU_SV_Result_SVrna_dbSNP_somatic.txt'#'/home/s3cha/data/PNNL/Location_PNNL_Single_recalculated.txt'#'C:/Users/Akard3/Dropbox/Workspace/SpliceGraph/src/Enosi/Locations_PNNL_20140202_removed_dbSNP.txt'#Location_PNNL_Single_recalculated.txt'#sample.txt'#
+#     known_location_filename = 'Location_Combine123_RefSeq_recalculated_Correction.txt'#'/home/s3cha/data/VU/Location_VU_RefSeq_PEPFDR01.txt'#
+#     ref_seq_filename = 'Homo_sapiens.GRCh37.70_formatted.gff'
+#     output_filename = '/home/s3cha/data/VU/Normal/Event_Normal_colon_SV_merged_somatic.txt'#'/home/s3cha/data/PNNL/ov_somatic_mutations/EventLocations_PNNL_20140202_removed_dbSNP_somatic.txt'#'/home/s3cha/data/VU/Somatic/Event_VU_SPECFDR01_splice_vcf_dbSNP_somatic.txt'#'/home/s3cha/data/PNNL/Event_PNNL_Single_recalculated.txt'#'/home/s3cha/Dropbox/Workspace/SpliceGraph/src/Enosi/sample_event2.txt'#Event_PNNL_20140202_Concat.txt'
+#     
+#     DNA_folder = '/home/s3cha/s3cha/data/dna/70'
 #     DNA_folder = 'D:/workspace/DNA/GRCh37.70'
     
     
-#     unknown_location_filename = '/home/s3cha/data/VU/Comet/temp/Location_VU_DT_Comet.txt'#'/home/s3cha/data/VU/Somatic/Location_VU_RefSeq_PEPFDR01_rna.txt'#'/home/s3cha/data/PNNL/ov_somatic_mutations/Locations_PNNL_20140202_removed_dbSNP_somatic.txt'#'/home/s3cha/data/VU/Somatic/Location_VU_SPECFDR01_splice_vcf_dbSNP_somatic.txt'#'/home/s3cha/data/JHU/Location_JHU_SV_Result_SVrna_dbSNP_somatic.txt'#'/home/s3cha/data/PNNL/Location_PNNL_Single_recalculated.txt'#'C:/Users/Akard3/Dropbox/Workspace/SpliceGraph/src/Enosi/Locations_PNNL_20140202_removed_dbSNP.txt'#Location_PNNL_Single_recalculated.txt'#sample.txt'#
-#     known_location_filename = 'Location_Combine123_RefSeq_recalculated_Correction.txt'#'/home/s3cha/data/VU/Location_VU_RefSeq_PEPFDR01.txt'#
-#     ref_seq_filename = 'Homo_sapiens.GRCh37.70_formatted.gff'
-#     output_filename = '/home/s3cha/data/VU/Comet/temp/Event3_VU_DT_Comet.txt'#'/home/s3cha/data/PNNL/ov_somatic_mutations/EventLocations_PNNL_20140202_removed_dbSNP_somatic.txt'#'/home/s3cha/data/VU/Somatic/Event_VU_SPECFDR01_splice_vcf_dbSNP_somatic.txt'#'/home/s3cha/data/PNNL/Event_PNNL_Single_recalculated.txt'#'/home/s3cha/Dropbox/Workspace/SpliceGraph/src/Enosi/sample_event2.txt'#Event_PNNL_20140202_Concat.txt'
 
-unknown_location_filename = '/data/s3cha/CHO_ENOSI_JOB/e22076b9e7ab40ef8fc2c63eddf67eba/group1/enosi_out1/event_location.txt'
-known_location_filename = '/home/shangzhong/Codes/Proteogenomics/MSGF_Enosi/Location.txt'
-ref_seq_filename = '/data/shangzhong/Picr_assembly/Annotation/PASA/pasa_stringtie/03_pasa_stringtie.gff3'
-output_filename = '/data/s3cha/CHO_ENOSI_JOB/e22076b9e7ab40ef8fc2c63eddf67eba/group1/event_result.txt'   
-DNA_folder = ''
-    
+    unknown_location_filename = '/data/s3cha/CHO_ENOSI_JOB/e22076b9e7ab40ef8fc2c63eddf67eba/group1/enosi_out2/event_location.txt'
+    known_location_filename = '/home/shangzhong/Codes/Proteogenomics/MSGF_Enosi/Location.txt'
+    ref_seq_filename = '/data/shangzhong/Picr_assembly/Annotation/PASA/pasa_stringtie/03_pasa_stringtie.gff3'
+    output_filename = '/data/s3cha/CHO_ENOSI_JOB/e22076b9e7ab40ef8fc2c63eddf67eba/group1/event_result.txt'   
+    DNA_folder = ''
+     
     
     #PNNL run
     #unknown_location_filename = '/home/s3cha/data/PNNL/Result/Location_Combine_PNNL_JHU.txt'
@@ -553,7 +549,7 @@ def FindSpliceEvent(current_location, ref_seq, event):
                         #print 'Splice two boundary error: ',current_location,ref_seq
                         event[10]=0                      
                 else:
-                    if current_location[0][1][-1]%3 != (ref_seq[4][index][4]-int(ref_seq[4][index][7]))%3 and event[10] > -1:
+                    if current_location[0][1][-1]%3 != (ref_seq[4][index][4]+int(ref_seq[4][index][7])-3)%3 and event[10] > -1:
                         event[10] = 2
                     elif current_location[0][0][0] < ref_seq[4][index+1][3] or current_location[0][1][-1] > ref_seq[4][index][4]: #check exon boundary
                         for i in UTR_area:
@@ -1113,9 +1109,9 @@ event_group = []  # event_group[index - group of event indicated][0 - unknown, 1
 chromosome = []
 related_gene_set = []
 for chr in unknown_splice:
-    if chr == 'picr_50':
-        pass
     for current_location in unknown_splice[chr]:
+        if current_location[1] == ':AIAPVLLDALTDPSR':
+            pass
         strand = current_location[5]
         # current location : [location,pep,spec_count,location_count,fdr,strand], location : [[start1,start2],[end1,end2]]
         # record the start and end position of current peptide location
