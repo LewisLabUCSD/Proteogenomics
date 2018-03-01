@@ -27,9 +27,9 @@ else:
 #     tmp_file_name = 'RNAseqMatch/v1-23_chr1.tmp'
 
     fasta_database_name = '/data/s3cha/CHO_ENOSI_JOB/e22076b9e7ab40ef8fc2c63eddf67eba/sequence3/splice.fa'
-    output_file_name = '/data/s3cha/CHO_ENOSI_JOB/e22076b9e7ab40ef8fc2c63eddf67eba/group1/event_out/event_location.txt'
-    pickle_file_name = '/data/s3cha/CHO_ENOSI_JOB/e22076b9e7ab40ef8fc2c63eddf67eba/group1/event_out/event_pepdic.p'
-    ntt = '2'
+    output_file_name = '/data/s3cha/CHO_ENOSI_JOB/e22076b9e7ab40ef8fc2c63eddf67eba/group9/enosi_out/event_location.txt'
+    pickle_file_name = '/data/s3cha/CHO_ENOSI_JOB/e22076b9e7ab40ef8fc2c63eddf67eba/group9/enosi_out/event_pepdic.p'
+    ntt = '1'
 
 
 #spectrum_file = open(spectrum_file_name,'r')
@@ -156,6 +156,7 @@ def get_location(start_seq,end_seq,start,end,length,strand,chrNum):
     return location
 
 # replace dictioanry key
+n = 0
 pep_list = pepdic.keys()
 for pep in pep_list:
     key = pep
@@ -172,8 +173,14 @@ for pep in pep_list:
         elif pep[0] in ['R','K']:
             pep = pep[:-1]
         else:
-            raise ValueError('protein is not tryptic peptides')
-    pepdic[pep] = pepdic.pop(key)
+            n += 1
+            pepdic.pop(key,None)
+            print key,'has no trypsin terminal'
+#             raise ValueError('protein is not tryptic peptides')
+    try:
+        pepdic[pep] = pepdic.pop(key)
+    except:
+        pass
 ##data base read######################################################
 for db in db_list:
     print 'Reading database: ',db
