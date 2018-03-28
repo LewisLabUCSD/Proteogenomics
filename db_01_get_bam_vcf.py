@@ -193,12 +193,12 @@ def rna_vari_call(rnaseq_path,target_path,final_path,batch,rna_vcf_pipeline_fn,p
 # rnaseq_path = '/media/lewislab/Dropbox (UCSD SBRG)/LewisPub/Data/DataForProteogenomics/DBH_CHO_mass_spec_data/YS_transfered_fastq_files'
 # target_path = '/data/shangzhong/Proteogenomics/fq'
 # final_path = '/data/shangzhong/Proteogenomics/vcf'
-#   
+  
 # batch = 6
-# indexes= range(12,68)
+# indexes= range(9,11)
 # rna_vcf_pipeline_fn = '/home/shangzhong/Codes/NGS-Pipeline/GATK_RNA_CHO.py'
 # parameter_fn = '/data/shangzhong/Proteogenomics/vcf/GATK_RNA_CHO.yaml'
-#   
+  
 # rna_vari_call(rnaseq_path,target_path,final_path,batch,rna_vcf_pipeline_fn,parameter_fn,indexes,chrom ='')
 
 #===============================================================================
@@ -248,3 +248,33 @@ def run_stringtie_ppl(indexes,rna_path,target_path,ppl_fn,par_fn):
 # run_stringtie_ppl(index_batch,rnaseq_path,target_path,stringtie_ppl_fn,stringtie_par_fn)  
 '''
 
+#===============================================================================
+#                 4. run salmon for all the files
+#===============================================================================
+# rnaseq_path = '/media/lewislab/Dropbox (UCSD SBRG)/LewisPub/Data/DataForProteogenomics/DBH_CHO_mass_spec_data/YS_transfered_fastq_files'
+# target_path = '/data/shangzhong/Proteogenomics/virus'
+# salmon_index = '/data/shangzhong/Proteogenomics/virus/all_rna_and_virus'
+# thread = 16
+# indexes = range(68)
+# batch = 1
+# index_batch = chunk(indexes,batch)
+# def run_salmon(indexes,rna_path,target_path,thread,batch):
+#     fq_path = target_path + '/fq'
+#     quant_path = target_path+'/quant'
+#     if not os.path.exists(quant_path):os.mkdir(quant_path)
+#     for index in indexes:
+#         if os.path.exists(fq_path):shutil.rmtree(fq_path)
+#         os.mkdir(fq_path)
+#         # 1. copy files
+#         copy_fq_files(rnaseq_path,fq_path,index)
+#         # 2. run salmon
+#         f1 = glob.glob(fq_path+'/*_1.fq.gz')
+#         f2 = glob.glob(fq_path+'/*_2.fq.gz')
+#         out_path=quant_path+'/'+f1[0].split('/')[-1][:-8]
+#         cmd=('salmon quant -i {index} -l A -p {t} -1 {f1} -2 {f2} -o {out_path}').format(
+#                 index=salmon_index,t=str(thread),f1=f1[0],f2=f2[0],out_path=out_path)
+#         print(cmd)
+#         sarge.run(cmd)
+    
+# run_salmon(index_batch,rnaseq_path,target_path,thread,batch)
+        
