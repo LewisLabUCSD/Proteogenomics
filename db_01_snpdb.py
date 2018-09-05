@@ -4,9 +4,9 @@ from natsort import natsorted
 from multiprocessing import Pool
 import pandas as pd
 fa = '/data/genome/hamster/picr_old/picr.fa'
-gff = '/data/genome/hamster/picr_old/pasa_stringtie.gff3'
+gff = '/data/shangzhong/Picr_assembly/Annotation/PASA/pasa_stringtie/03_pasa_stringtie.gff3'
 snpDB_path = '/data/shangzhong/Proteogenomics/Database/SNP_Database_Generate'
-snpDB_code_path = '/data/shangzhong/Proteogenomics/Database/SNP_Database_Generate'
+snpDB_code_path = '/home/shangzhong/Codes/Proteogenomics/SNPDB'
 chr_num = 1830
 thread = 24
 
@@ -25,7 +25,7 @@ if not os.path.exists(msdb_folder): os.mkdir(msdb_folder)
 if not os.path.exists(dbfa_folder): os.mkdir(dbfa_folder)
 #----- 1. convert vcf to spl
 out_spl = snpDB_path+'/spl.out'
-cmd = ('python {spl_code} temp {out_spl} {vcf_folder}').format(spl_code=snpDB_code_path+'/bin/SPLgenerator.py',out_spl=out_spl,vcf_folder=vcf_folder)
+cmd = ('python {spl_code} temp {out_spl} {vcf_folder}').format(spl_code=snpDB_code_path+'/SPLgenerator.py',out_spl=out_spl,vcf_folder=vcf_folder)
 print(cmd)
 sarge.run(cmd)
 # # 1) split spl

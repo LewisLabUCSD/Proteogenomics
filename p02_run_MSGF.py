@@ -1,4 +1,4 @@
-import os,glob
+import os,glob,pdb
 import multiprocessing as mp
 import subprocess
 from natsort import natsorted
@@ -16,7 +16,7 @@ def run_MSGF(msgf_cmd_path,thread):
         with open(cmd_fn) as f:
             for line in f:
                 item = line.strip().split()
-                item[3] = '/data/s3cha/CHO_ENOSI_JOB/tool/2014.1208/MSGFPlus.20130403/MSGFPlus.jar'
+                item[3] = '/home/shangzhong/Codes/Proteogenomics/MSGF_Enosi/MSGFPlus.jar'
                 if not os.path.exists(item[9]):
                     cmds.append(' '.join(item))
     cmds = natsorted(cmds)
@@ -32,7 +32,7 @@ cwd = os.getcwd()
 parser = argparse.ArgumentParser(description='run MSGF in parallel')
 parser.add_argument('-p','--path',action='store',dest='path',help='path to the main foler that has spectrum folder',default=cwd)
 parser.add_argument('-l','--list',action='store',dest='list',help='folder that has list of comamnds to run',default='list')
-parser.add_argument('-t','--thread',action='store',dest='thread',type=int,help='number of thread')
+parser.add_argument('-t','--thread',action='store',dest='thread',type=int,help='number of thread',default=1)
 
 args = parser.parse_args()
 
@@ -44,8 +44,8 @@ t = args.thread
 os.chdir(path)
 out_path = path+'/MSGFresult'
 if not os.path.exists(out_path): os.mkdir(out_path)
-dbs = natsorted(glob.glob('sequence*'))
+dbs = natsorted(glob.glob('../sequence*'))
 for db in dbs:
-    if not os.path.exists(out_path+'/'+db): os.mkdir(out_path+'/'+db)
+    if not os.path.exists(out_path+'/'+db.split('/')[-1]): os.mkdir(out_path+'/'+db.split('/')[-1])
 
 run_MSGF(cmd_path,t)

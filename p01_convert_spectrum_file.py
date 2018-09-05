@@ -5,9 +5,10 @@ from natsort import natsorted
 import os,subprocess
 import argparse
 
+path = os.getcwd()
 
 parser = argparse.ArgumentParser(description='Converts spectrum to indexed spectrum file')
-parser.add_argument('-p','--path',action='store',dest='path',help='path to the main foler of the enosi')
+parser.add_argument('-p','--path',action='store',dest='path',help='path to the main foler of the enosi',default=path)
 parser.add_argument('-s','--snum',action='store',dest='start_index',type=int,help='start index of the spectrum file')
 parser.add_argument('-n','--npath',action='store',dest='new_path',help='new result path',default='convert_spectrum')
 args = parser.parse_args()
